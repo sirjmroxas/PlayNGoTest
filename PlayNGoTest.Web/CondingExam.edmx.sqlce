@@ -1,0 +1,54 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server Compact Edition
+-- --------------------------------------------------
+-- Date Created: 01/14/2017 12:20:10
+-- Generated from EDMX file: c:\users\jmroxas\documents\visual studio 2012\Projects\PlayNGoTest\PlayNGoTest.Web\CondingExam.edmx
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- NOTE: if the constraint does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- NOTE: if the table does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+    DROP TABLE [People];
+GO
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'People'
+CREATE TABLE [People] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(100)  NULL,
+    [Address] nvarchar(100)  NULL,
+    [PhoneNumber] nvarchar(100)  NULL,
+    [PhotoUrl] nvarchar(500)  NULL
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [Id] in table 'People'
+ALTER TABLE [People]
+ADD CONSTRAINT [PK_People]
+    PRIMARY KEY ([Id] );
+GO
+
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------
