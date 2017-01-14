@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "SignalR Demo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 text-center">
+        <div class="box box-primary direct-chat direct-chat-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">SignalR Demo</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="direct-chat-messages" id="message">
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <div class="input-group">
+                    <input type="text" id="msg" placeholder="Type Message ..." class="form-control">
+                    <span class="input-group-btn">
+                        <button type="button" id="send" class="btn btn-primary btn-flat">Send</button>
+                    </span>
+                </div>
+            </div>
+            <!-- /.box-footer-->
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+<ul>
+</ul>
+@section Scripts {
+    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="~/signalR/hubs"></script>
+    <script>
+        $(function () {
+            var chat = $.connection.chat;
+
+            chat.client.send = function (message) {
+                $('#message').append('<div class="direct-chat-msg"><div class="direct-chat-text">' + message + '</div></div>');
+            };
+
+            $.connection.hub.start().done(function () {
+                chat.server.send("Hello! I've connected");
+
+                $('#send').click(function () {
+                    if ($('#msg').val().length >= 1) {
+                        var messageFormat = "echo " + $('#msg').val();
+                        chat.server.send(messageFormat);
+
+                        // Clear so we can type again
+                        $('#msg').val('');
+                    } else {
+                        // Yeah we can make this prettier
+                        alert("Woops gotta type something before you send a message")
+                    }
+                });
+            });
+        });
+    </script>
+}
